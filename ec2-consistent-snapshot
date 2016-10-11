@@ -487,7 +487,9 @@ sub discover_volume_ids {
 
     for my $device (@devices) {
       my $ec2_device = "/dev/$device";
-      $ec2_device =~ s/\bxvd/sd/;
+      
+      # EBS volumes are mounted as /dev/xvd[f-p] in CoreOS.
+      # $ec2_device =~ s/\bxvd/sd/;
 
       my $volume_id = $ebs_volume_ids{$ec2_device};
 
